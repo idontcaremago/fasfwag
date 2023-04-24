@@ -26,7 +26,7 @@ local QueueOnTeleport = queue_on_teleport or syn.queue_on_teleport
 local FoundEggs = false;
 
 QueueOnTeleport([[
-  loadstring(game:HttpGet("https://raw.githubusercontent.com/idontcaremago/fasfwag/main/new.lua?token=GHSAT0AAAAAACBY72TX2AUUFCABXUDQDLQWZCF5WNA", true))();
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/idontcaremago/fasfwag/main/new.lua", true))();
 ]])
 
 UserSettings().GameSettings.MasterVolume = 0
