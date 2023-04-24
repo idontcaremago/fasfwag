@@ -2,7 +2,7 @@
 -- yes very shitty code, i dont rlly care its for a dead game cry abt it
 
 -- console was requested
-rconsolename("eggfarm.lua ; buki#0001 - ".. string.format("%02i:%02i %s", ((os.date("*t").hour % 24 - 1) % 12) + 1, os.date("*t").min, os.date("*t").hour % 24 < 12 and "AM" or "PM"))
+rconsolename("eggfarm.lua ; lurpinK - ".. string.format("%02i:%02i %s", ((os.date("*t").hour % 24 - 1) % 12) + 1, os.date("*t").min, os.date("*t").hour % 24 < 12 and "AM" or "PM"))
 rconsoleprint("@@CYAN@@")
 
 if not game:IsLoaded() then
