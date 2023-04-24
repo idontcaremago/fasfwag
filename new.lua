@@ -2,7 +2,7 @@
 -- yes very shitty code, i dont rlly care its for a dead game cry abt it
 
 -- console was requested
-rconsolename("lurpinK")
+rconsolename("eggfarm.lua ; buki#0001 - ".. string.format("%02i:%02i %s", ((os.date("*t").hour % 24 - 1) % 12) + 1, os.date("*t").min, os.date("*t").hour % 24 < 12 and "AM" or "PM"))
 rconsoleprint("@@CYAN@@")
 
 if not game:IsLoaded() then
@@ -16,7 +16,8 @@ getgenv().LOADED = true;
 task.spawn(function()
     game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(v)
         if v.Name == "ErrorPrompt" then
-            ServerHop()
+            task.wait(2)
+            game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId)
         end
     end)
 end)
@@ -25,7 +26,7 @@ local QueueOnTeleport = queue_on_teleport or syn.queue_on_teleport
 local FoundEggs = false;
 
 QueueOnTeleport([[
-  loadstring(game:HttpGet("https://raw.githubusercontent.com/idontcaremago/fasfwag/main/new.lua?token=GHSAT0AAAAAACBY72TWNBTNA46V7F25OTF4ZCF5SGQ", true))();
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/graveyardsuwu/egg1/main/egg", true))();
 ]])
 
 UserSettings().GameSettings.MasterVolume = 0
@@ -83,9 +84,6 @@ local function CollectEggs()
     return true
 end
 
-
-wait(0.5)
-
 local function FetchJobIds()
     local Servers = {os.date("!*t").hour};
     local ServerPages;
@@ -93,7 +91,7 @@ local function FetchJobIds()
         task.wait()
         local ServersAPI = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/".. game.PlaceId .."/servers/Public?sortOrder=Asc&limit=100".. (ServerPages and "&cursor=".. ServerPages or "")));
         for i, v in next, ServersAPI["data"] do
-            if v["id"] ~= game.PlaceId and v["playing"] ~= v["maxPlayers"] then
+            if v["id"] ~= game.PlaceId and v["playing"] ~= v["maxPlayers"] and tonumber(v["playing"]) ~= 0 then
                 table.insert(Servers, v["id"])
             end
         end
@@ -166,3 +164,4 @@ if FoundEggs then
     rconsoleprint("@@LIGHT_CYAN@@")
     rconsoleprint("[-] Current farming stats:\n     Eggs collected: ".. comma_value(Stats[1]) .."\n     Money gained: $".. comma_value(Stats[2]) .." \n     Crates opened: ".. comma_value(Stats[3]) .."\n     Servers hopped: ".. comma_value(Stats[5]) .."\n")
 end
+--
